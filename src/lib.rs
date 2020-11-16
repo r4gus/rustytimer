@@ -99,7 +99,7 @@ impl Component for Timer {
                         self.counter_s = self.duration_on;
                         self.counter_c = 0;
                         self.message = "Timer started";
-                        self.state = State::On;
+                        self.state = State::Start;
 
                     },
                     _ => { // Resume timer
@@ -118,36 +118,49 @@ impl Component for Timer {
             Msg::ResetTimer => { // Reset the timer state
                 self.counter_s = self.duration_on;
                 self.counter_c = 0;
+                self.start = 5;
                 self.state = State::Idle;
                 self.message = "Reset";
                 self.job = None;
             },
             Msg::SetTimer => {},
             Msg::Tick => { // Called every second to update the timer state
-                self.counter_s -= 1;
+                match self.state {
+                    State::Start => {
+                        self.start -= 1;
 
-                if self.counter_s == 0 {
-                    match self.state {
-                        State::On => self.counter_c += 1,
-                        _ => {},
-                    }
-
-                    if self.counter_c < self.cycles {
-                        match self.state {
-                            State::On => {
-                                self.state = State::Off;
-                                self.counter_s = self.duration_off;
-                            },
-                            State::Off => {
-                                self.state = State::On;
-                                self.counter_s = self.duration_on;
-                            },
-                            _ => {}, // Should be impossible
+                        if self.start == 0 {
+                            self.start = 5;
+                            self.state = State::On;
                         }
-                    } else {
-                        self.state = State::Idle;
-                        self.message = "Done, nice work!";
-                        self.job = None;
+                    },
+                    _ => {
+                        self.counter_s -= 1;
+
+                        if self.counter_s == 0 {
+                            match self.state {
+                                State::On => self.counter_c += 1,
+                                _ => {},
+                            }
+
+                            if self.counter_c < self.cycles {
+                                match self.state {
+                                    State::On => {
+                                        self.state = State::Off;
+                                        self.counter_s = self.duration_off;
+                                    },
+                                    State::Off => {
+                                        self.state = State::On;
+                                        self.counter_s = self.duration_on;
+                                    },
+                                    _ => {}, // Should be impossible
+                                }
+                            } else {
+                                self.state = State::Idle;
+                                self.message = "Done, nice work!";
+                                self.job = None;
+                            }
+                        }
                     }
                 }
             },
@@ -176,19 +189,21 @@ impl Component for Timer {
               <main role="main" class="inner cover">
                 <p class="lead">{ self.message }</p>
                 <div class="clock-container">
-                    <Clock progress={ self.counter_c as f64 / self.cycles as f64 } text=format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s))
+                    <Clock progress={ self.counter_c as f64 / self.cycles as f64 } text={ if self.state == State::Start { format!("{}", self.start) } else { format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s)) }}
                         darken={self.state == State::Off}/>
                 </div>
 
                 {
                     match self.state {
-                        State::Idle => html! { <button type="button" class="btn btn-outline-primary" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Start" }</button> },
-                        State::Paused => html! { <button type="button" class="btn btn-outline-primary" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Resume" }</button> },
-                        _ => html! { <button type="button" class="btn btn-outline-secondary" onclick=self.link.callback(|_| Msg::StopTimer)>{ "Stop" }</button> },
+                        State::Idle => html! { <button type="button" class="btn btn-outline-info btn-lg" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Start" }</button> },
+                        State::Paused => html! { <><button type="button" class="btn btn-outline-info btn-lg mr-3" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Resume" }</button>
+                                                 <button type="button" class="btn btn-outline-warning btn-lg" onclick=self.link.callback(|_| Msg::ResetTimer)>{ "Reset" }</button></>},
+                        State::Start => html! { },
+                        _ => html! { <button type="button" class="btn btn-outline-secondary btn-lg" onclick=self.link.callback(|_| Msg::StopTimer)>{ "Stop" }</button> },
                     }
                 }
 
-                <button type="button" class="btn btn-outline-warning" onclick=self.link.callback(|_| Msg::ResetTimer)>{ "Reset" }</button>
+
               </main>
 
               <footer class="mastfoot mt-auto">
