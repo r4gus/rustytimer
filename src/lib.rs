@@ -100,7 +100,7 @@ impl Component for Timer {
                         self.counter_c = 0;
                         self.message = "Timer started";
                         self.state = State::Start;
-
+                        play_countdown();
                     },
                     _ => { // Resume timer
                         self.message = "Timer resumed";
@@ -160,6 +160,8 @@ impl Component for Timer {
                                 self.message = "Done, nice work!";
                                 self.job = None;
                             }
+                        } else if self.counter_s == 5 {
+                            play_countdown();
                         }
                     }
                 }
@@ -211,9 +213,18 @@ impl Component for Timer {
                   <p>{ "Developed by David Sugar" }</p>
                 </div>
               </footer>
+
+              <audio id="countdown">
+                <source id="playerSource" src="sounds/beep-countdown.mp3" type="audio/mp3"/>
+              </audio>
             </div>
         }
     }
+}
+
+#[wasm_bindgen]
+extern "C" {
+    fn play_countdown();
 }
 
 #[wasm_bindgen(start)]
