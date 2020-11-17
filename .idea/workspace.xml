@@ -24,9 +24,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Timer implemented.">
-      <change afterPath="$PROJECT_DIR$/static/helper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/sounds/beep-countdown.mp3" afterDir="false" />
+    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Js + Sound">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clock.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/clock.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/helper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +73,6 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test --package rustysugar --lib tests" />
@@ -102,7 +99,8 @@
       <option name="presentableId" value="Default" />
       <updated>1605456580072</updated>
       <workItem from="1605456581149" duration="2212000" />
-      <workItem from="1605459286511" duration="43721000" />
+      <workItem from="1605459286511" duration="43824000" />
+      <workItem from="1605609640962" duration="4415000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -125,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605571368930</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Js + Sound">
+      <created>1605571629983</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605571629983</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +151,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Timer implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Timer implemented." />
+    <MESSAGE value="Js + Sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Js + Sound" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog" timestamp="1605571594141">

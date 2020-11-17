@@ -1,5 +1,6 @@
 use yew::prelude::*;
 
+/// This represents a timer `Clock` with a progress bar and a clock face.
 pub struct Clock {
     link: ComponentLink<Self>,
     viewbox: (u64, u64, u64, u64),
@@ -15,12 +16,18 @@ pub struct Clock {
     darken: bool,   // tells if the text color should be dark to highlight a difference between states
 }
 
-
+/// When a new `Clock` component is created it gets passed the following properties by it's parent:
+///
+/// * `progress` - The current progress, a floating point value between 0 and 1.
+/// * `text` - The Text to display (usually a clock face).
+/// * `darken` - If set to true, the text is greyed out.
+/// * `color` - The color of the progress bar when filled.
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
     pub progress: f64,
     pub text: String,
     pub darken: bool,
+    pub color: &'static str,
 }
 
 impl Component for Clock {
@@ -36,20 +43,20 @@ impl Component for Clock {
         Self {
             link,
             viewbox: (0, 0, width, height),
-            height: height,
-            width: width,
-            stroke_width: stroke_width,
-            radius: radius,
+            height,
+            width,
+            stroke_width,
+            radius,
             position: (width / 2, height / 2),
             progress: props.progress,
             circumference: radius as f64 * 2.0 * std::f64::consts::PI,
             text: props.text,
-            color: "#39c9bb",
+            color: props.color,
             darken: props.darken,
         }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
         false
     }
 

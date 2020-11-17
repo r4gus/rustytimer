@@ -26,7 +26,7 @@ struct Timer {
     callback_tick: Callback<()>, // callback to be invoked on a `tick`
     message: &'static str,
     state: State,       // the current state of the timer
-    saved_state: State,
+    saved_state: State, // Used to save the state if the timer is paused.
     job: Option<Box<dyn Task>>, // Currently active task
 }
 
@@ -37,6 +37,8 @@ struct Timer {
 /// * `StartTimer` - Starts the timer.
 /// * `StopTimer` - Stops the timer (state is preserved).
 /// * `ResetTimer` - Resets everything to the currently selected settings.
+/// * `SetTimer` - Set a new On and Off duration as well as a new number of cycles to complete.
+/// * `Tick` - Frequently called (each second) by an `IntervalService` if the timer is active (`On`, `Off`).
 enum Msg {
     StartTimer,
     StopTimer,
@@ -45,6 +47,20 @@ enum Msg {
     Tick,
 }
 
+/// The different states of the `Timer`.
+///
+/// The `Timer` starts in `Idle` state. If the user clicks the start button the `Timer` switches
+/// to the `Start` state and a countdown appears after which it transitions to the `On` state.
+/// The `Timer` toggles between `On` and `Off` until either all cycles are completed or the user
+/// presses the pause button. In `Pause` state the timer can either be resumed or reset.
+///
+/// # States
+///
+/// * `Start` - Start/ Resume the timer.
+/// * `On` - The state in which the user is demanded to work out.
+/// * `Off` - The state in which the user is granted some rest.
+/// * `Paused` - The timer is paused.
+/// * `Idle` - Do nothing.
 #[derive(Copy, Clone, PartialEq)]
 enum State {
     Start,
@@ -56,17 +72,17 @@ enum State {
 
 impl Component for Timer {
     type Message = Msg;
-    type Properties = ();
+    type Properties = (); // Root node so we have no properties
 
-    /// Create a new tiemr component.
+    /// Create a new `Timer` component.
     ///
     /// # Arguments
     ///
-    /// * `_props` - Properties from the paren (currently none).
+    /// * `_props` - Properties from the parent component (currently none - it's the root).
     /// * `link` - A link to register callbacks or send messages to the component.
     fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            callback_tick: link.callback(|_| Msg::Tick),
+            callback_tick: link.callback(|_| Msg::Tick), // register new `Tick` callback.
             link,
             duration_on: 20,
             duration_off: 10,
@@ -90,7 +106,9 @@ impl Component for Timer {
     /// * `msg` - The message to handle.
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
+            // Called when the timer is started or resumed.
             Msg::StartTimer => {
+                // Create an new `IntervalService` instance that calls `Tick` every second.
                 let handle = IntervalService::spawn(Duration::from_secs(1), self.callback_tick.clone());
                 self.job = Some(Box::new(handle));
 
@@ -100,7 +118,6 @@ impl Component for Timer {
                         self.counter_c = 0;
                         self.message = "Timer started";
                         self.state = State::Start;
-                        play_countdown();
                     },
                     _ => { // Resume timer
                         self.message = "Timer resumed";
@@ -126,24 +143,24 @@ impl Component for Timer {
             Msg::SetTimer => {},
             Msg::Tick => { // Called every second to update the timer state
                 match self.state {
-                    State::Start => {
+                    State::Start => { // The timer has just bee started and we're counting down.
                         self.start -= 1;
 
-                        if self.start == 0 {
+                        if self.start == 0 { // Countdown finished, switch to `On` state.
                             self.start = 5;
                             self.state = State::On;
                         }
                     },
                     _ => {
-                        self.counter_s -= 1;
+                        self.counter_s -= 1; // Decrement counter on every tick.
 
-                        if self.counter_s == 0 {
+                        if self.counter_s == 0 { // Counted down
                             match self.state {
-                                State::On => self.counter_c += 1,
+                                State::On => self.counter_c += 1, // `On` - `Off` cycle completed.
                                 _ => {},
                             }
 
-                            if self.counter_c < self.cycles {
+                            if self.counter_c < self.cycles { // Not all cycles are completed.
                                 match self.state {
                                     State::On => {
                                         self.state = State::Off;
@@ -155,13 +172,15 @@ impl Component for Timer {
                                     },
                                     _ => {}, // Should be impossible
                                 }
-                            } else {
+                            } else { // All cycles completed, Nice Job !
                                 self.state = State::Idle;
                                 self.message = "Done, nice work!";
                                 self.job = None;
                             }
-                        } else if self.counter_s == 5 {
-                            play_countdown();
+                        } else if self.counter_s == 1 { // Play countdown sound.
+                            play_countdown("long-beep", "long-beep-player");
+                        } else if self.counter_s <= 5 { // Play countdown sound.
+                            play_countdown("beep", "beep-player");
                         }
                     }
                 }
@@ -191,8 +210,15 @@ impl Component for Timer {
               <main role="main" class="inner cover">
                 <p class="lead">{ self.message }</p>
                 <div class="clock-container">
-                    <Clock progress={ self.counter_c as f64 / self.cycles as f64 } text={ if self.state == State::Start { format!("{}", self.start) } else { format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s)) }}
-                        darken={self.state == State::Off}/>
+                    <Clock progress={ self.counter_c as f64 / self.cycles as f64 }
+                           text={ if self.state == State::Start {
+                                    format!("{}", self.start)
+                                  } else {
+                                    format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s))
+                                  }}
+                           darken={self.state == State::Off}
+                           color="#39c9bb"
+                    />
                 </div>
 
                 {
@@ -214,8 +240,11 @@ impl Component for Timer {
                 </div>
               </footer>
 
-              <audio id="countdown">
-                <source id="playerSource" src="sounds/beep-countdown.mp3" type="audio/mp3"/>
+              <audio id="beep">
+                <source id="beep-player" src="sounds/beep.mp3" type="audio/mp3"/>
+              </audio>
+              <audio id="long-beep">
+                <source id="long-beep-player" src="sounds/long-beep.mp3" type="audio/mp3"/>
               </audio>
             </div>
         }
@@ -224,7 +253,7 @@ impl Component for Timer {
 
 #[wasm_bindgen]
 extern "C" {
-    fn play_countdown();
+    fn play_countdown(aid: &str, sid: &str);
 }
 
 #[wasm_bindgen(start)]
