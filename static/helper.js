@@ -1,10 +1,6 @@
-function play_countdown(aid, sid) {
+function play_countdown(aid) {
     var audio = document.getElementById(aid);
     if(audio != null) {
-        var audiosource = document.getElementById(sid);
-        if(audiosource != null) {
-            //audio.load()
-            audio.play();
-        }
+        audio.play()
     }
 }

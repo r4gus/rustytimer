@@ -162,9 +162,9 @@ impl Component for Timer {
                         }
 
                         if self.start == 0 { // Play countdown sound.
-                            play_countdown("long-beep", "long-beep-player");
+                            play_countdown("long-beep");
                         } else if self.start <= 4 { // Play countdown sound.
-                            play_countdown("beep", "beep-player");
+                            play_countdown("beep");
                         }
                     },
                     _ => {
@@ -198,9 +198,9 @@ impl Component for Timer {
                         }
 
                         if self.counter_s == 0 { // Play countdown sound.
-                            play_countdown("long-beep", "long-beep-player");
+                            play_countdown("long-beep");
                         } else if self.counter_s <= 4 { // Play countdown sound.
-                            play_countdown("beep", "beep-player");
+                            play_countdown("beep");
                         }
                     }
                 }
@@ -309,6 +309,9 @@ impl Component for Timer {
                         </div>
                     </div>
                 </div>
+
+                <audio id="beep" src="sounds/beep.mp3" type="audio/mp3" preload="auto"></audio>
+                <audio id="long-beep" src="sounds/long-beep.mp3" type="audio/mp3" preload="auto"></audio>
             </>
         }
     }
@@ -316,7 +319,7 @@ impl Component for Timer {
 
 #[wasm_bindgen]
 extern "C" {
-    fn play_countdown(aid: &str, sid: &str);
+    fn play_countdown(aid: &str);
 }
 
 #[wasm_bindgen(start)]
