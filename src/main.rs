@@ -20,5 +20,6 @@ fn file(file: PathBuf) -> Option<NamedFile> {
 fn main() {
     rocket::ignite()
         .mount("/", routes![index, file])
+        .mount("/", StaticFiles::from("/static"))
         .launch();
 }
