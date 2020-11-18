@@ -224,7 +224,7 @@ impl Component for Timer {
                       <h3 class="masthead-brand">{ "RustyTimer" }</h3>
                       <nav class="nav nav-masthead justify-content-center">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#settingsModal">{ "Settings" }</a>
-                        <a class="nav-link" href="#">{ "Contact" }</a>
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#infoModal">{ "Info" }</a>
                       </nav>
                     </div>
                   </header>
@@ -258,7 +258,10 @@ impl Component for Timer {
 
                   <footer class="mastfoot mt-auto">
                     <div class="inner">
-                      <p>{ "Developed by David Sugar" }</p>
+                        <a href="https://ko-fi.com/sug4r" target="_blank">
+                            <img src="images/BuyMeACoffee.png" alt="Buy Me a Coffee!" style="width: 180px;" />
+                        </a>
+                        <div style="padding-top: 6px;">{"Copyright (c) 2020 David Sugar"}</div>
                     </div>
                   </footer>
 
@@ -276,11 +279,37 @@ impl Component for Timer {
                             <div class="modal-header bg-info">
                                 <h4 class="modal-title" id="settingsModalLabel">{ "Settings" }</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="fa fa-window-close-o" aria-hidden="true" style="color: #fff;"></i>
+                                    <i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i>
                                 </button>
                             </div>
-                            <div class="modal-body bg-secondary" id="settingsModalBody">
+                            <div class="modal-body text-dark" id="settingsModalBody">
                                 <Form callback={ self.callback_form.clone() } />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-info">
+                                <h4 class="modal-title">{ "Info" }</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body text-dark" id="infoModalBody">
+                            <p>
+                                {"I believe in free software that benefits people. I don't store any personal data \
+                                    nor do I wanna show you advertising. If you want to support me feel free and "}
+                                    <a href="https://ko-fi.com/sug4r" target="_blank">
+                                        <img src="images/BuyMeACoffee.png" alt="Buy Me a Coffee!" style="width: 120px;" />
+                                    </a>
+                                    {"."}<br/><br/>{"This site is licensed under "} <a href="https://github.com/r4gus/rustytimer/blob/main/LICENSE" style="color: black;" target="_blank"><strong>{"MIT "} </strong></a>
+                                    {"and uses "}<a href="https://getbootstrap.com/" style="color: black;" target="_blank"><strong>{"Bootstrap "}</strong></a>
+                                    {"and "}<a href="https://fontawesome.com/v4.7.0/" style="color: black;" target="_blank"><strong> {"FontAwesome "}</strong></a> {"for it's layout. \
+                                    It is written in "} <a href="https://www.rust-lang.org/" style="color: black;" target="_blank"><strong>{"Rust "}</strong></a> {"using the "}
+                                    <a href="https://yew.rs/docs/en/" style="color: black;" target="_blank"><strong>{"Yew "}</strong></a> {"framework."}</p>
                             </div>
                         </div>
                     </div>
