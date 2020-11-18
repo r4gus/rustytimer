@@ -24,11 +24,16 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Js + Sound">
+    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Sound fixed.">
+      <change afterPath="$PROJECT_DIR$/src/form.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/sounds/beep.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/sounds/long-beep.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clock.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/clock.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sounds/beep-countdown.mp3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +48,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Rust File" />
         <option value="JavaScript File" />
+        <option value="Rust File" />
       </list>
     </option>
   </component>
@@ -73,6 +78,11 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test --package rustysugar --lib tests" />
@@ -100,7 +110,8 @@
       <updated>1605456580072</updated>
       <workItem from="1605456581149" duration="2212000" />
       <workItem from="1605459286511" duration="43824000" />
-      <workItem from="1605609640962" duration="4415000" />
+      <workItem from="1605609640962" duration="7344000" />
+      <workItem from="1605627126156" duration="14995000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -130,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605571629983</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Sound fixed.">
+      <created>1605614741255</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605614741255</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,13 +170,22 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Timer implemented." />
     <MESSAGE value="Js + Sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Js + Sound" />
+    <MESSAGE value="Sound fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sound fixed." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="804" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1605616792476">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="804" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1605616792476" />
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog" timestamp="1605571594141">
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605571594141" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605614813960">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605614813960" />
     <state x="3219" y="619" width="672" height="678" key="search.everywhere.popup" timestamp="1605543297779">
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>

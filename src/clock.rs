@@ -69,7 +69,7 @@ impl Component for Clock {
 
     fn view(&self) -> Html {
         let style = format!("stroke-dasharray: {} {}; stroke-dashoffset: {};
-            transition: stroke-dashoffset 0.35s; transform: rotate(-90deg); transform-origin: 50% 50%;",
+            transition: stroke-dashoffset 0.45s; transform: rotate(-90deg); transform-origin: 50% 50%;",
             self.circumference, self.circumference, self.circumference - self.progress * self.circumference);
         html! {
             <svg

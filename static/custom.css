@@ -64,7 +64,7 @@ body {
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-    border-bottom-color: rgba(255, 255, 255, .25);
+    border-bottom-color: #39c9bb;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -105,6 +105,9 @@ body {
     color: rgba(255, 255, 255, .5);
 }
 
+/*
+ * Svg container styling for the Clock
+ */
 .svg-container {
     display: inline-block;
     position: relative;

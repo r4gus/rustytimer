@@ -1,6 +1,7 @@
 #![recursion_limit="1024"] // limit the recursion depth of the html! macro
 mod helper;
 mod clock;
+mod form;
 
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
@@ -8,6 +9,7 @@ use yew::services::{Task, IntervalService, ConsoleService};
 
 use helper::{hours, minutes, seconds};
 use clock::Clock;
+use form::Form;
 use wasm_bindgen::__rt::core::time::Duration;
 
 
@@ -24,6 +26,7 @@ struct Timer {
     counter_s: u64,
     counter_c: u64,
     callback_tick: Callback<()>, // callback to be invoked on a `tick`
+    callback_form: Callback<(u64, u64, u64)>,
     message: &'static str,
     state: State,       // the current state of the timer
     saved_state: State, // Used to save the state if the timer is paused.
@@ -43,7 +46,7 @@ enum Msg {
     StartTimer,
     StopTimer,
     ResetTimer,
-    SetTimer,
+    SetTimer(u64, u64, u64),
     Tick,
 }
 
@@ -83,6 +86,7 @@ impl Component for Timer {
     fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
             callback_tick: link.callback(|_| Msg::Tick), // register new `Tick` callback.
+            callback_form: link.callback(|tup: (u64, u64, u64)| Msg::SetTimer(tup.0, tup.1, tup.2)),
             link,
             duration_on: 20,
             duration_off: 10,
@@ -90,7 +94,7 @@ impl Component for Timer {
             start: 5,
             counter_s: 20,
             counter_c: 0,
-            message: "Get ready!",
+            message: "",
             state: State::Idle,
             saved_state: State::Idle,
             job: None,
@@ -116,18 +120,18 @@ impl Component for Timer {
                     State::Idle => { // Start timer
                         self.counter_s = self.duration_on;
                         self.counter_c = 0;
-                        self.message = "Timer started";
+                        //self.message = "Timer started";
                         self.state = State::Start;
                     },
                     _ => { // Resume timer
-                        self.message = "Timer resumed";
+                        //self.message = "Timer resumed";
                         self.state = self.saved_state;
                     }
                 }
 
             },
             Msg::StopTimer => { // Pause the timer (state is preserved until it is started again or reset)
-                self.message = "Timer stoped";
+                //self.message = "Timer stoped";
                 self.saved_state = self.state;  // Save current state
                 self.state = State::Paused;             // Switch timer into pause state
                 self.job = None;                        // Remove the current interval service that calls tick
@@ -137,22 +141,34 @@ impl Component for Timer {
                 self.counter_c = 0;
                 self.start = 5;
                 self.state = State::Idle;
-                self.message = "Reset";
+                //self.message = "Reset";
                 self.job = None;
             },
-            Msg::SetTimer => {},
+            Msg::SetTimer(on, off, rounds) => {
+                self.duration_on = on;
+                self.duration_off = off;
+                self.cycles = rounds;
+                self.link.callback(|_| Msg::ResetTimer).emit(());
+            },
             Msg::Tick => { // Called every second to update the timer state
                 match self.state {
                     State::Start => { // The timer has just bee started and we're counting down.
-                        self.start -= 1;
 
                         if self.start == 0 { // Countdown finished, switch to `On` state.
                             self.start = 5;
                             self.state = State::On;
+                        } else {
+                            self.start -= 1;
+                        }
+
+                        if self.start == 0 { // Play countdown sound.
+                            play_countdown("long-beep", "long-beep-player");
+                        } else if self.start <= 4 { // Play countdown sound.
+                            play_countdown("beep", "beep-player");
                         }
                     },
                     _ => {
-                        self.counter_s -= 1; // Decrement counter on every tick.
+
 
                         if self.counter_s == 0 { // Counted down
                             match self.state {
@@ -174,12 +190,16 @@ impl Component for Timer {
                                 }
                             } else { // All cycles completed, Nice Job !
                                 self.state = State::Idle;
-                                self.message = "Done, nice work!";
+                                //self.message = "Done, nice work!";
                                 self.job = None;
                             }
-                        } else if self.counter_s == 1 { // Play countdown sound.
+                        } else {
+                            self.counter_s -= 1; // Decrement counter on every tick.
+                        }
+
+                        if self.counter_s == 0 { // Play countdown sound.
                             play_countdown("long-beep", "long-beep-player");
-                        } else if self.counter_s <= 5 { // Play countdown sound.
+                        } else if self.counter_s <= 4 { // Play countdown sound.
                             play_countdown("beep", "beep-player");
                         }
                     }
@@ -197,56 +217,75 @@ impl Component for Timer {
     /// Create a (html) layout for the component.
     fn view(&self) -> Html {
         html! {
-            <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-              <header class="masthead mb-auto">
-                <div class="inner">
-                  <h3 class="masthead-brand">{ "RustyTimer" }</h3>
-                  <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="#">{ "Contact" }</a>
-                  </nav>
-                </div>
-              </header>
+            <>
+                <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                  <header class="masthead mb-auto">
+                    <div class="inner">
+                      <h3 class="masthead-brand">{ "RustyTimer" }</h3>
+                      <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#settingsModal">{ "Settings" }</a>
+                        <a class="nav-link" href="#">{ "Contact" }</a>
+                      </nav>
+                    </div>
+                  </header>
 
-              <main role="main" class="inner cover">
-                <p class="lead">{ self.message }</p>
-                <div class="clock-container">
-                    <Clock progress={ self.counter_c as f64 / self.cycles as f64 }
-                           text={ if self.state == State::Start {
-                                    format!("{}", self.start)
-                                  } else {
-                                    format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s))
-                                  }}
-                           darken={self.state == State::Off}
-                           color="#39c9bb"
-                    />
-                </div>
+                  <main role="main" class="inner cover">
+                    <p class="lead">{ self.message }</p>
+                    <div class="clock-container">
+                        <Clock progress={ self.counter_c as f64 / self.cycles as f64 }
+                               text={ if self.state == State::Start {
+                                        format!("{}", self.start)
+                                      } else {
+                                        format!("{:02}:{:02}:{:02}", hours(self.counter_s), minutes(self.counter_s), seconds(self.counter_s))
+                                      }}
+                               darken={self.state == State::Off}
+                               color="#39c9bb"
+                        />
+                    </div>
 
-                {
-                    match self.state {
-                        State::Idle => html! { <button type="button" class="btn btn-outline-info btn-lg" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Start" }</button> },
-                        State::Paused => html! { <><button type="button" class="btn btn-outline-info btn-lg mr-3" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Resume" }</button>
-                                                 <button type="button" class="btn btn-outline-warning btn-lg" onclick=self.link.callback(|_| Msg::ResetTimer)>{ "Reset" }</button></>},
-                        State::Start => html! { },
-                        _ => html! { <button type="button" class="btn btn-outline-secondary btn-lg" onclick=self.link.callback(|_| Msg::StopTimer)>{ "Stop" }</button> },
+                    {
+                        match self.state {
+                            State::Idle => html! { <button type="button" class="btn btn-outline-info btn-lg" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Start" }</button> },
+                            State::Paused => html! { <><button type="button" class="btn btn-outline-info btn-lg mr-3" onclick=self.link.callback(|_| Msg::StartTimer)>{ "Resume" }</button>
+                                                     <button type="button" class="btn btn-outline-warning btn-lg" onclick=self.link.callback(|_| Msg::ResetTimer)>{ "Reset" }</button></>},
+                            State::Start => html! { },
+                            _ => html! { <button type="button" class="btn btn-outline-secondary btn-lg" onclick=self.link.callback(|_| Msg::StopTimer)>{ "Stop" }</button> },
+                        }
                     }
-                }
 
 
-              </main>
+                  </main>
 
-              <footer class="mastfoot mt-auto">
-                <div class="inner">
-                  <p>{ "Developed by David Sugar" }</p>
+                  <footer class="mastfoot mt-auto">
+                    <div class="inner">
+                      <p>{ "Developed by David Sugar" }</p>
+                    </div>
+                  </footer>
+
+                  <audio id="beep">
+                    <source id="beep-player" src="sounds/beep.mp3" type="audio/mp3"/>
+                  </audio>
+                  <audio id="long-beep">
+                    <source id="long-beep-player" src="sounds/long-beep.mp3" type="audio/mp3"/>
+                  </audio>
                 </div>
-              </footer>
 
-              <audio id="beep">
-                <source id="beep-player" src="sounds/beep.mp3" type="audio/mp3"/>
-              </audio>
-              <audio id="long-beep">
-                <source id="long-beep-player" src="sounds/long-beep.mp3" type="audio/mp3"/>
-              </audio>
-            </div>
+                <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-info">
+                                <h4 class="modal-title" id="settingsModalLabel">{ "Settings" }</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-window-close-o" aria-hidden="true" style="color: #fff;"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-secondary" id="settingsModalBody">
+                                <Form callback={ self.callback_form.clone() } />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
         }
     }
 }
