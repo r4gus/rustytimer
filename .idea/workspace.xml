@@ -25,8 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Php file added.">
-      <change beforePath="$PROJECT_DIR$/static/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,7 @@
       <workItem from="1605459286511" duration="43824000" />
       <workItem from="1605609640962" duration="7344000" />
       <workItem from="1605627126156" duration="20591000" />
-      <workItem from="1605691724159" duration="1133000" />
+      <workItem from="1605691724159" duration="1327000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -168,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605695041203</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Php file added.">
+      <created>1605695188562</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605695188562</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,11 +212,11 @@
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605571594141" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605695053518">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605695192800">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="2459" y="269" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605663104848" />
-    <state x="591" y="289" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605695053518" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605695192800" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605614813960" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605659978689">
       <screen x="1920" y="0" width="1920" height="1080" />
