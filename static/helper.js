@@ -3,7 +3,7 @@ function play_countdown(aid, sid) {
     if(audio != null) {
         var audiosource = document.getElementById(sid);
         if(audiosource != null) {
-            audio.load()
+            //audio.load()
             audio.play();
         }
     }

@@ -265,12 +265,7 @@ impl Component for Timer {
                     </div>
                   </footer>
 
-                  <audio id="beep">
-                    <source id="beep-player" src="sounds/beep.mp3" type="audio/mp3"/>
-                  </audio>
-                  <audio id="long-beep">
-                    <source id="long-beep-player" src="sounds/long-beep.mp3" type="audio/mp3"/>
-                  </audio>
+
                 </div>
 
                 <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
