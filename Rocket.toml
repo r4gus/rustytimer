@@ -1,0 +1,5 @@
+[development]
+template_dir = "static/"
+
+[production]
+template_dir = "static/"

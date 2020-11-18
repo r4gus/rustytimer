@@ -24,9 +24,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Php file added.">
+    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Php deleted.">
+      <change afterPath="$PROJECT_DIR$/Rocket.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +44,7 @@
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
         <option value="Rust File" />
       </list>
     </option>
@@ -76,6 +79,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test --package rustysugar --lib tests" />
@@ -86,11 +94,6 @@
       <envs />
       <method v="2">
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -110,7 +113,8 @@
       <workItem from="1605459286511" duration="43824000" />
       <workItem from="1605609640962" duration="7344000" />
       <workItem from="1605627126156" duration="20591000" />
-      <workItem from="1605691724159" duration="1327000" />
+      <workItem from="1605691724159" duration="1675000" />
+      <workItem from="1605717504634" duration="2441000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -175,7 +179,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605695188562</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="script moved from head into body.">
+      <created>1605695435135</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605695435135</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Php deleted.">
+      <created>1605695599616</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605695599616</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +219,9 @@
     <MESSAGE value="Minor fixes." />
     <MESSAGE value="Info page added." />
     <MESSAGE value="Php file added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Php file added." />
+    <MESSAGE value="script moved from head into body." />
+    <MESSAGE value="Php deleted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Php deleted." />
   </component>
   <component name="WindowStateProjectService">
     <state x="804" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1605616792476">
@@ -212,11 +232,11 @@
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605571594141" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605695192800">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605695638918">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="2459" y="269" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605663104848" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605695192800" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605695638918" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605614813960" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605659978689">
       <screen x="1920" y="0" width="1920" height="1080" />
