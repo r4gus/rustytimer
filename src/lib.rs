@@ -258,9 +258,6 @@ impl Component for Timer {
 
                   <footer class="mastfoot mt-auto" style="padding-top: 18px;">
                     <div class="inner">
-                        <a href="https://ko-fi.com/sug4r" target="_blank">
-                            <img src="images/BuyMeACoffee.png" alt="Buy Me a Coffee!" style="width: 180px;" />
-                        </a>
                         <div style="padding-top: 6px;">{"Copyright (c) 2020 David Sugar"}</div>
                     </div>
                   </footer>
