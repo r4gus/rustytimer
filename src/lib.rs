@@ -256,7 +256,7 @@ impl Component for Timer {
 
                   </main>
 
-                  <footer class="mastfoot mt-auto">
+                  <footer class="mastfoot mt-auto" style="padding-top: 18px;">
                     <div class="inner">
                         <a href="https://ko-fi.com/sug4r" target="_blank">
                             <img src="images/BuyMeACoffee.png" alt="Buy Me a Coffee!" style="width: 180px;" />

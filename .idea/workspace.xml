@@ -28,11 +28,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/wasm.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/static/wasm.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/wasm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/wasm_bg.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/static/wasm_bg.wasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/wasm_bg.wasm.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/static/wasm_bg.wasm.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +114,7 @@
       <workItem from="1605609640962" duration="7344000" />
       <workItem from="1605627126156" duration="20591000" />
       <workItem from="1605691724159" duration="1675000" />
-      <workItem from="1605717504634" duration="9002000" />
+      <workItem from="1605717504634" duration="10770000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -239,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605740747926</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Audio moved into index.html.">
+      <created>1605742497913</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1605742497913</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,11 +283,11 @@
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605571594141" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605740751932">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605742502541">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="2459" y="269" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605663104848" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605740751932" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605742502541" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605614813960" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605659978689">
       <screen x="1920" y="0" width="1920" height="1080" />
