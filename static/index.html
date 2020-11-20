@@ -12,21 +12,35 @@
     <!-- Own Css -->
     <link href="custom.css" rel="stylesheet">
 
+    <!-- Web Assembly -->
+    <script type="module">
+        import init from "./wasm.js"
+        init()
+    </script>
+
+    <!-- Sound JS -->
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+        var soundID1 = "ShortBeep";
+        var soundID2 = "LongBeep";
+
+        function loadSound () {
+            createjs.Sound.registerSound("sounds/beep.mp3", soundID1);
+            createjs.Sound.registerSound("sounds/long-beep.mp3", soundID2);
+        }
+
+        function play_countdown(sid) {
+            createjs.Sound.play(sid);
+        }
+    </script>
+
     <title>Rusty Timer</title>
 
 </head>
-<body class="text-center">
-<script type="module">
-    import init from "./wasm.js"
-    init()
-</script>
-
-
-
+<body class="text-center" onload="loadSound();">
 
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="helper.js"></script>
 </body>
 </html>

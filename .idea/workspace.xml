@@ -24,9 +24,12 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Audio moved into index.html.">
+    <list default="true" id="9be46b7d-3e73-4eb4-a1e7-d68efa6f7deb" name="Default Changelist" comment="Removed label.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/helper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/wasm_bg.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/static/wasm_bg.wasm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +80,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test --package rustysugar --lib tests" />
@@ -108,7 +116,8 @@
       <workItem from="1605627126156" duration="20591000" />
       <workItem from="1605691724159" duration="1675000" />
       <workItem from="1605717504634" duration="11465000" />
-      <workItem from="1605801978645" duration="38000" />
+      <workItem from="1605801978645" duration="983000" />
+      <workItem from="1605890194181" duration="1112000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1605560917635</created>
@@ -243,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605744884542</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Removed label.">
+      <created>1605802322241</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1605802322241</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +289,8 @@
     <MESSAGE value="Php deleted." />
     <MESSAGE value="Backend server added." />
     <MESSAGE value="Audio moved into index.html." />
-    <option name="LAST_COMMIT_MESSAGE" value="Audio moved into index.html." />
+    <MESSAGE value="Removed label." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed label." />
   </component>
   <component name="WindowStateProjectService">
     <state x="804" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1605616792476">
@@ -288,19 +305,20 @@
       <screen x="2560" y="360" width="1920" height="1080" />
     </state>
     <state x="3308" y="597" width="486" height="640" key="RollbackChangesDialog/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605571594141" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605744888675">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1605802326879">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="2459" y="269" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605663104848" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605744888675" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605802326879" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605614813960" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605659978689">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605659978689" />
-    <state x="3219" y="619" width="672" height="678" key="search.everywhere.popup" timestamp="1605543297779">
-      <screen x="2560" y="360" width="1920" height="1080" />
+    <state x="706" y="280" width="672" height="662" key="search.everywhere.popup" timestamp="1605890746379">
+      <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="3219" y="619" width="672" height="678" key="search.everywhere.popup/2560.360.1920.1080/0.387.2560.1053@2560.360.1920.1080" timestamp="1605543297779" />
+    <state x="706" y="280" width="672" height="662" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1605890746379" />
   </component>
 </project>

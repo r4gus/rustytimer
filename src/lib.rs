@@ -162,9 +162,9 @@ impl Component for Timer {
                         }
 
                         if self.start == 0 { // Play countdown sound.
-                            play_countdown("long-beep");
+                            play_countdown("LongBeep");
                         } else if self.start <= 4 { // Play countdown sound.
-                            play_countdown("beep");
+                            play_countdown("ShortBeep");
                         }
                     },
                     _ => {
@@ -198,9 +198,9 @@ impl Component for Timer {
                         }
 
                         if self.counter_s == 0 { // Play countdown sound.
-                            play_countdown("long-beep");
+                            play_countdown("LongBeep");
                         } else if self.counter_s <= 4 { // Play countdown sound.
-                            play_countdown("beep");
+                            play_countdown("ShortBeep");
                         }
                     }
                 }
@@ -306,9 +306,6 @@ impl Component for Timer {
                         </div>
                     </div>
                 </div>
-
-                <audio id="beep" src="sounds/beep.mp3" type="audio/mp3" preload="auto"></audio>
-                <audio id="long-beep" src="sounds/long-beep.mp3" type="audio/mp3" preload="auto"></audio>
             </>
         }
     }
